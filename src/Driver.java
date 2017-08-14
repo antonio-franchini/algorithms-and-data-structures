@@ -4,22 +4,15 @@ import java.util.Vector;
 
 public class Driver {
     static public void main(String args[]){
-        LinkedList l = new LinkedList();
+        BubbleSort l = new BubbleSort();
 
-        l.printLinkedlist();
+        int testArr[] = {2,7,3,9,5,4,8};
 
-        l.addNodeToEnd(6);
-        l.addNodeToEnd(9);
-        l.addNodeToEnd(1);
-        l.addNodeToEnd(7);
-        l.addNodeToEnd(8);
-        l.addNodeToEnd(2);
+        l.printArray(testArr);
 
-        l.printLinkedlist();
+        l.sort(testArr);
 
-        l.reverse();
-
-        l.printLinkedlist();
+        l.printArray(testArr);
     }
 
 }
