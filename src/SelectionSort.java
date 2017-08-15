@@ -1,25 +1,15 @@
 public class SelectionSort {
 
-
-    //         i
-    //         j
-    //     2,  7,  3,  9,  5,  4,  8
-    //     2,  7,  3,  9,  5,  4,  8
-    //     2,  7,  3,  9,  5,  4,  8
-    //     2,  7,  3,  9,  5,  4,  8
-    //     2,  7,  3,  9,  5,  4,  8
     public void sort(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
-            int min = Integer.MAX_VALUE;
-            int min_index = 0;
+            int min_index = i;
 
             for (int j = i; j < arr.length; j++) {
-                if (arr[j] < min) {
-                    min = arr[j];
+                if (arr[j] < arr[min_index]) {
                     min_index = j;
-                    swap(arr, min_index, i);
                 }
             }
+            swap(arr, min_index, i);
         }
     }
 

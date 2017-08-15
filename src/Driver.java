@@ -4,15 +4,16 @@ import java.util.Vector;
 
 public class Driver {
     static public void main(String args[]){
-        SelectionSort l = new SelectionSort();
+        MyBinarySearchTree l = new MyBinarySearchTree();
 
-        int testArr[] = {2,7,3,9,5,4,8};
+        l.addNode(5);
+        l.addNode(2);
+        l.addNode(8);
+        l.addNode(1);
+        l.addNode(4);
+        l.addNode(6);
 
-        l.printArray(testArr);
-
-        l.sort(testArr);
-
-        l.printArray(testArr);
+        l.printTreeDiagram();
     }
 
 }
