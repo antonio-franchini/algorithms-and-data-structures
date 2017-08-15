@@ -1,10 +1,20 @@
 public class BubbleSort {
 
+    //                 i
+    //                             j
+    //     2,  7,  3,  9,  5,  4,  8
+    //     2,  3,  7,  9,  5,  4,  8
+    //     2,  3,  7,  5,  9,  4,  8
+    //     2,  3,  7,  5,  4,  9,  8
+    //     2,  3,  7,  5,  4,  8,  9
+
     public void sort(int arr[]){
-        for(int i = 0; i < arr.length; i++){
+        for(int i = 0; i < arr.length-1; i++){
             int j = i;
-            while(arr[j] > arr[j+1]){
-                swap(arr, j, j+1);
+            while(j < arr.length-1){
+                if(arr[j] > arr[j+1]){
+                    swap(arr, j, j+1);
+                }
                 j++;
             }
         }

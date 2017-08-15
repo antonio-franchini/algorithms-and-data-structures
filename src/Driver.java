@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Driver {
     static public void main(String args[]){
-        BubbleSort l = new BubbleSort();
+        SelectionSort l = new SelectionSort();
 
         int testArr[] = {2,7,3,9,5,4,8};
 
