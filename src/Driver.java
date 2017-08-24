@@ -6,14 +6,16 @@ public class Driver {
     static public void main(String args[]){
 
     int arr[] = {6,3,1,9,7,14,25,2,4,3};
+        int arr[] = {6,3,1,9,7,14,25,2,4,3};
 
-    MaxHeap l = new MaxHeap(arr);
+    HeapSort l = new HeapSort();
+    l.printArray(arr);
 
-    l.print();
 
-    l.getRoot();
+        l.sort(arr);
 
-    l.print();
+        l.printArray(arr);
+
 
     }
 
