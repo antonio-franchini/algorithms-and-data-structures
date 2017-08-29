@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 public class BinarySearchTree {
 
@@ -8,11 +9,14 @@ public class BinarySearchTree {
         int data;
         Node left;
         Node right;
+        Node levelRight;
 
         Node(int data){
             this.data = data;
             this.left = null;
             this.right = null;
+            this.levelRight = null;
+
         }
     }
 
@@ -62,22 +66,30 @@ public class BinarySearchTree {
         }
     }
 
-    public void printTree(){
+    public void printTreePreorder(){
         if(this.root == null){
             System.out.println("The tree is empty");
         }
         else{
-            printTree(this.root);
+            printTreePreorder(this.root);
         }
     }
 
-    public void printTree(Node root){
+    public void printTreePreorder(Node root){
         if(root == null){
             return;
         }
         System.out.print(root.data + " ");
-        printTree(root.left);
-        printTree(root.right);
+        printTreePreorder(root.left);
+        printTreePreorder(root.right);
+    }
+
+    public void printTreeLevelOrder(Node root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data + " ");
+        printTreePreorder(root.levelRight);
     }
 
     //          5
@@ -147,6 +159,36 @@ public class BinarySearchTree {
             root.right = null;
         }
 
+    }
+
+    public void connectLevels(){
+        Vector<Vector<Node>> v = new Vector<>();
+        v.add(new Vector<Node>());
+        connectLevels(this.root, v, 0);
+
+        for(int i = 0; i < v.size(); i++){
+            int j;
+            for(j = 0; j < v.get(i).size()-1; j++){
+                v.get(i).get(j).levelRight = v.get(i).get(j+1);
+            }
+        }
+    }
+
+    public void connectLevels(Node root, Vector<Vector<Node>> v, int level){
+        if(root == null){
+            return;
+        }
+
+        v.get(level).add(root);
+        v.add(new Vector<Node>());
+        level++;
+
+        if(root.left != null){
+            connectLevels(root.left, v, level);
+        }
+        if(root.right != null){
+            connectLevels(root.right, v, level);
+        }
     }
 
 }

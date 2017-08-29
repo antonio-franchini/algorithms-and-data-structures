@@ -5,22 +5,22 @@ import java.util.Vector;
 public class Driver {
 
     public static void main(String args[]){
-//        BinarySearchTree b = new BinarySearchTree();
-//        //          5
-//        //        /    \
-//        //       2      8
-//        //     /  \    /
-//        //    1   4   6
-//        //
-//        //
-//        //   5 2 8 1 4 6
-//
-////        b.addNode(5);
-////        b.addNode(2);
-////        b.addNode(8);
-////        b.addNode(1);
-////        b.addNode(4);
-////        b.addNode(6);
+        BinarySearchTree b = new BinarySearchTree();
+        //          5
+        //        /    \
+        //       2      8
+        //     /  \    /
+        //    1   4   6
+        //
+        //
+        //   5 2 8 1 4 6
+
+        b.addNode(5);
+        b.addNode(2);
+        b.addNode(8);
+        b.addNode(1);
+        b.addNode(4);
+        b.addNode(6);
 //
 //        /* Build the non-binary tree */
 //        BinarySearchTree.Node five = b.createNode(5);
@@ -40,17 +40,17 @@ public class Driver {
 //        BinarySearchTree.Node n2 = six;
 //        System.out.println("Lowest common ancestor of " + n1.data + " and " + n2.data + " is " + b.getLowestCommonAncestor(b.getRoot(), n1, n2).data);
 //
-//        PrintTree p = new PrintTree();
-//        p.printTreeDiagram(b.getRoot());
+        PrintTree p = new PrintTree();
+        p.printTreeDiagram(b.getRoot());
 //
 //        b.convertToList(b.getRoot());
 //        p.printTreeDiagram(b.getRoot());
 
-        int arr[] = {3,4,5,1,2};
+        b.printTreeLevelOrder(b.getRoot());
 
-        NumFinder n = new NumFinder();
+        b.connectLevels();
 
-        System.out.println("Index is " + n.findInRotatedSortedArr(arr, 0, arr.length-1, 8));
+        b.printTreeLevelOrder(b.getRoot());
     }
 
 }
