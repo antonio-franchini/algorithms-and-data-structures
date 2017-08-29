@@ -22,6 +22,10 @@ public class BinarySearchTree {
         this.root = null;
     }
 
+    public void setRoot(Node root){
+        this.root = root;
+    }
+
     public Node getRoot(){
         return this.root;
     }
@@ -33,6 +37,10 @@ public class BinarySearchTree {
         else {
             addNode(data, this.root);
         }
+    }
+
+    public Node createNode(int data){
+        return new Node(data);
     }
 
     public void addNode(int data, Node root){
@@ -81,87 +89,43 @@ public class BinarySearchTree {
     //
     //   5 2 8 1 4 6
 
-    public void printTreeDiagram() {
-        Node root = this.root;
-        int maxLevel = maxLevel(root);
-
-        printNodeInternal(Collections.singletonList(root), 1, maxLevel);
+    public boolean isBinaryTree(Node root, int min, int max){
+        /* An empty tree is a Binary Tree */
+        if (root == null)
+            return true;
+        /* False if this node violates the min/max constraints */
+        if (root.data < min || root.data > max)
+            return false;
+        /* Otherwise check the subtrees recursively tightening the min/max constraints */
+        return (isBinaryTree(root.left, min, root.data) &&
+                isBinaryTree(root.right, root.data, max));
     }
 
-    private static <T extends Comparable<?>> void printNodeInternal(List<Node> nodes, int level, int maxLevel) {
-        if (nodes.isEmpty() || isAllElementsNull(nodes))
-            return;
+    public Node getLowestCommonAncestor(Node root, Node n1, Node n2){
+        /* return null if this path didn't find neither n1 or n2 */
+        if (root == null)
+            return null;
 
-        int floor = maxLevel - level;
-        int endgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
-        int firstSpaces = (int) Math.pow(2, (floor)) - 1;
-        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
+        /* return this node if this path did find either n1 or n2 */
+        if (root == n1 || root == n2)
+            return root;
 
-        printWhitespaces(firstSpaces);
+        /* continue searching in the left and right paths (for either one of the two nodes or null) */
+        Node leftTree = getLowestCommonAncestor(root.left, n1, n2);
+        Node rightTree = getLowestCommonAncestor(root.right, n1, n2);
 
-        List<Node> newNodes = new ArrayList<Node>();
-        for (Node node : nodes) {
-            if (node != null) {
-                System.out.print(node.data);
-                newNodes.add(node.left);
-                newNodes.add(node.right);
-            } else {
-                newNodes.add(null);
-                newNodes.add(null);
-                System.out.print(" ");
-            }
-
-            printWhitespaces(betweenSpaces);
+        /* if the current node subtree contain the two target nodes then this is the ancestor */
+        if(leftTree != null && rightTree != null ){
+            return root;
         }
-        System.out.println("");
-
-        for (int i = 1; i <= endgeLines; i++) {
-            for (int j = 0; j < nodes.size(); j++) {
-                printWhitespaces(firstSpaces - i);
-                if (nodes.get(j) == null) {
-                    printWhitespaces(endgeLines + endgeLines + i + 1);
-                    continue;
-                }
-
-                if (nodes.get(j).left != null)
-                    System.out.print("/");
-                else
-                    printWhitespaces(1);
-
-                printWhitespaces(i + i - 1);
-
-                if (nodes.get(j).right != null)
-                    System.out.print("\\");
-                else
-                    printWhitespaces(1);
-
-                printWhitespaces(endgeLines + endgeLines - i);
-            }
-
-            System.out.println("");
+        /* otherwise the left child is the the ancestor */
+        else if(leftTree != null){
+            return leftTree;
         }
-
-        printNodeInternal(newNodes, level + 1, maxLevel);
-    }
-
-    private static void printWhitespaces(int count) {
-        for (int i = 0; i < count; i++)
-            System.out.print(" ");
-    }
-
-    private static <T extends Comparable<?>> int maxLevel(Node node) {
-        if (node == null)
-            return 0;
-
-        return Math.max(maxLevel(node.left), maxLevel(node.right)) + 1;
-    }
-
-    private static <T> boolean isAllElementsNull(List<T> list) {
-        for (Object object : list) {
-            if (object != null)
-                return false;
+        /* otherwise the right child is the the ancestor */
+        else{
+            return rightTree;
         }
-        return true;
     }
 
 }
