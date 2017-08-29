@@ -25,3 +25,7 @@
 
 # Other Files
 *.xml
+
+# Directories
+.idea/*
+out/*
