@@ -23,4 +23,34 @@ public class NumFinder {
         return false;
     }
 
+    /* Returns the array index of the given target, -1 if the target was not found */
+    /* This function is designed for a sorted but rotated array */
+    public int findInRotatedSortedArr(int[] arr, int start, int end, int target){
+        if(start > end){
+            return -1;
+        }
+
+        int middle = (end + start) / 2;
+
+        if (arr[middle] == target) {
+            return middle;
+        }
+
+        if (arr[start] <= arr[middle]){
+            if(target >= arr[start] && target <= arr[middle]){
+                return findInRotatedSortedArr(arr, start, middle, target);
+            }
+            else{
+                return findInRotatedSortedArr(arr, middle+1, end, target);
+            }
+        }
+        else{ /* (arr[middle] < arr[end]) */
+            if(target >= arr[middle+1] && target <= arr[end]) {
+                return findInRotatedSortedArr(arr, middle+1, end, target);
+            }
+            else{
+                return findInRotatedSortedArr(arr, start, middle, target);
+            }
+        }
+    }
 }

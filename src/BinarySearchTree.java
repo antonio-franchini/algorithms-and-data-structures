@@ -128,4 +128,25 @@ public class BinarySearchTree {
         }
     }
 
+    public void convertToList(Node root){
+        if(root == null){
+            return;
+        }
+        if(root.left != null) {
+            convertToList(root.left);
+        }
+        if(root.right != null) {
+            convertToList(root.right);
+        }
+        if(root.right != null) {
+            Node i = root;
+            while(i != null && i.left != null){
+                i = i.left;
+            }
+            i.left = root.right;
+            root.right = null;
+        }
+
+    }
+
 }
