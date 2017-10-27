@@ -26,6 +26,17 @@ public class MyPrinter {
         System.out.println("");
     }
 
+    /* Print two dimensional Vector */
+    public static void printVector(Vector<Vector<Integer>> v) {
+        for (int i = 0; i < v.size(); i++) {
+            for (int j = 0; j < v.get(0).size(); j++) {
+                System.out.print(" " + v.get(i).get(j));
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+
     /* Print the three diagram */
     public void printTreeDiagram(BSTNode root) {
         int maxLevel = maxLevel(root);
