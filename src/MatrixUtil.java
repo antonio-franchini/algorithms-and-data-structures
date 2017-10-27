@@ -1,6 +1,6 @@
 /* FillShape fills a shape represented with 1 values in a double dimensional array of integers. */
 
-public class FillShape {
+public class MatrixUtil {
 
     public static void runFillShape() {
 
@@ -16,12 +16,12 @@ public class FillShape {
 
 
         System.out.println("Shape before:");
-        printShape(shape);
+        MyPrinter.printArray(shape);
 
         int shape_output[][] = fillShape(shape);
 
         System.out.println("Shape after:");
-        printShape(shape);
+        MyPrinter.printArray(shape);
     }
 
     public static int[][] fillShape(int[][] matrix) {
@@ -66,18 +66,26 @@ public class FillShape {
                 fillShapeHelper(matrix, x, y - 1);
             }
         }
-
         return matrix;
     }
 
-    public static void printShape(int[][] shape) {
-        for (int i = 0; i < shape.length; i++) {
-            for (int j = 0; j < shape[0].length; j++) {
-                System.out.print(" " + shape[i][j]);
-            }
-            System.out.println("");
+    public void rotateMatrix(int[][] matrix){
+        /* If the matrix isn't N x N return */
+        if(matrix[0].length != matrix.length){
+            System.out.println("Invalid matrix");
+            return;
         }
-        System.out.println("");
+        int N = matrix.length-1;
+
+        for(int y = 0; y < N/2; y++){
+            for(int x = y; x < N-y; x++){
+                int temp = matrix[y][x];
+                matrix[  y][  x] = matrix[  x][N-y];
+                matrix[  x][N-y] = matrix[N-y][N-x];
+                matrix[N-y][N-x] = matrix[N-x][  y];
+                matrix[N-x][  y] = temp;
+            }
+        }
     }
 
 }

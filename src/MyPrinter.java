@@ -13,9 +13,12 @@ public class MyPrinter {
     }
 
     /* Print two dimensional array */
-    public void printArray(int[][] arr) {
+    public static void printArray(int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
+                if(arr[i][j] < 10){
+                    System.out.print(" ");
+                }
                 System.out.print(" " + arr[i][j]);
             }
             System.out.println("");
