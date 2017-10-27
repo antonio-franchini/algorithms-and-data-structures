@@ -2,15 +2,35 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class PrintTree {
+public class MyPrinter {
+
+    /* Print one dimensional array */
+    public void printArray(int arr[]){
+        for(int i = 0; i < arr.length; i++){
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println("");
+    }
+
+    /* Print two dimensional array */
+    public void printArray(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                System.out.print(" " + arr[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+
     /* Print the three diagram */
-    public void printTreeDiagram(BinarySearchTree.Node root) {
+    public void printTreeDiagram(BSTNode root) {
         int maxLevel = maxLevel(root);
 
         printNodeInternal(Collections.singletonList(root), 1, maxLevel);
     }
 
-    private static <T extends Comparable<?>> void printNodeInternal(List<BinarySearchTree.Node> nodes, int level, int maxLevel) {
+    private static <T extends Comparable<?>> void printNodeInternal(List<BSTNode> nodes, int level, int maxLevel) {
         if (nodes.isEmpty() || isAllElementsNull(nodes))
             return;
 
@@ -21,8 +41,8 @@ public class PrintTree {
 
         printWhitespaces(firstSpaces);
 
-        List<BinarySearchTree.Node> newNodes = new ArrayList<BinarySearchTree.Node>();
-        for (BinarySearchTree.Node node : nodes) {
+        List<BSTNode> newNodes = new ArrayList<BSTNode>();
+        for (BSTNode node : nodes) {
             if (node != null) {
                 System.out.print(node.data);
                 newNodes.add(node.left);
@@ -71,7 +91,7 @@ public class PrintTree {
             System.out.print(" ");
     }
 
-    private static <T extends Comparable<?>> int maxLevel(BinarySearchTree.Node node) {
+    private static <T extends Comparable<?>> int maxLevel(BSTNode node) {
         if (node == null)
             return 0;
 
