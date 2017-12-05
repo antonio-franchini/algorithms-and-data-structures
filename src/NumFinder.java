@@ -56,7 +56,7 @@ public class NumFinder {
 
     /* Finds all the triplets that add up to zero in a given array */
     public void threeSum(int[] nums) {
-        HeapSort2.sort(nums);
+        //HeapSort2.sort(nums);
 
         for(int i = 0; i < nums.length-3; i++){
             int l = i+1;

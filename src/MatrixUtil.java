@@ -88,4 +88,19 @@ public class MatrixUtil {
         }
     }
 
+    public int[][] multiply(int[][] A, int[][] B){
+        int[][] C = new int[A[0].length][B.length];
+
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0; j < B[0].length; j++){
+                int temp = 0;
+                for(int z = 0; z < B.length; z++){
+                    temp =+ A[i][z] * B[z][j];
+                }
+                C[i][j] = temp;
+            }
+        }
+        return C;
+    }
+
 }
