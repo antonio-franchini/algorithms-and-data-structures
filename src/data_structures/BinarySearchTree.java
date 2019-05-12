@@ -21,7 +21,7 @@ public class BinarySearchTree {
 
     public void addNode(int data){
         if(this.root == null){
-            this.root = new BSTNode(data);
+            this.root = new BSTNode(data, null);
         }
         else {
             addNode(data, this.root);
@@ -35,7 +35,7 @@ public class BinarySearchTree {
     public void addNode(int data, BSTNode root){
         if(data < root.data){
             if(root.left == null) {
-                root.left = new BSTNode(data);
+                root.left = new BSTNode(data, root);
             }
             else{
                 addNode(data, root.left);
@@ -43,7 +43,7 @@ public class BinarySearchTree {
         }
         else{
             if(root.right == null) {
-                root.right = new BSTNode(data);
+                root.right = new BSTNode(data, root);
             }
             else{
                 addNode(data, root.right);
@@ -177,5 +177,20 @@ public class BinarySearchTree {
             connectLevels(root.right, v, level);
         }
     }
+
+    public BSTNode find(BSTNode root, int data){
+        if(root == null){
+            return null;
+        }
+        if(root.data > data){
+            return find(root.left, data);
+        }
+        if(root.data < data){
+            return find(root.right, data);
+        }
+        /* else if root.data == data */
+        return root;
+    }
+
 
 }

@@ -64,10 +64,19 @@ public class Graph {
         this.vertices.put( label, new Vertex( label ) );
     }
 
+    public Vertex getVertexFromLabel(String label){
+        return vertices.get(label);
+    }
+
     public void addEdge( String label1, String label2 ){
         this.edges.add( new Edge( this.vertices.get( label1 ), this.vertices.get( label2 ) ) );
         this.vertices.get( label1 ).addNeighbor( this.vertices.get( label2 ) );
         this.vertices.get( label2 ).addNeighbor( this.vertices.get( label1 ) );
+    }
+
+    public void addEdgeDirected( String label1, String label2 ){
+        this.edges.add( new Edge( this.vertices.get( label1 ), this.vertices.get( label2 ) ) );
+        this.vertices.get( label1 ).addNeighbor( this.vertices.get( label2 ) );
     }
 
     public void addEdge( String label1, String label2, int w ){
@@ -91,6 +100,7 @@ public class Graph {
     public void DeepFirstSearch( String label ) {
         ArrayList<Vertex> visited = new ArrayList<Vertex>();
         DeepFirstSearch( this.vertices.get(label), visited );
+        System.out.println("");
     }
 
     public void DeepFirstSearch( Vertex v, ArrayList<Vertex> visited ) {
@@ -106,6 +116,7 @@ public class Graph {
     public void BreadthFirstSearch( String label ) {
         ArrayList<Vertex> visited = new ArrayList<Vertex>();
         BreadthFirstSearch( this.vertices.get( label ), visited );
+        System.out.println("");
     }
 
     public void BreadthFirstSearch( Vertex v, ArrayList<Vertex> visited ) {
@@ -167,7 +178,7 @@ public class Graph {
         //
         //        A ---- B ---- F ---- E ---- G
         //        | \  /        |      |      |
-        //        |   /         |      |      |
+        //        |  \/         |      |      |
         //        |  /\         |      |      |
         //        | /  \        |      |      |
         //        C ---- D      K      H ---- M

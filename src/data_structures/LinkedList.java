@@ -1,14 +1,6 @@
 public class LinkedList {
-    public class Node{
-        int data;
-        Node next;
 
-        Node(int data){
-            this.data = data;
-        }
-    }
-
-    Node root;
+    LLNode root;
 
     LinkedList(){
         root = null;
@@ -17,14 +9,14 @@ public class LinkedList {
     public void addNodeToEnd(int data){
 
         if(this.root == null){
-            root = new Node(data);
+            root = new LLNode(data);
         }
         else {
-            Node iter = root;
+            LLNode iter = root;
             while(iter != null && iter.next != null){
                 iter = iter.next;
             }
-            iter.next = new Node(data);
+            iter.next = new LLNode(data);
         }
     }
 
@@ -34,9 +26,9 @@ public class LinkedList {
             return;
         }
 
-        Node iter = root;
-        Node prevPrev = null;
-        Node prev = null;
+        LLNode iter = root;
+        LLNode prevPrev = null;
+        LLNode prev = null;
 
         while(iter != null){
             prevPrev = prev;
@@ -55,7 +47,7 @@ public class LinkedList {
             System.out.print("List empty");
         }
         else {
-            Node iter = root;
+            LLNode iter = root;
             while(iter != null && iter.next != null) {
                 System.out.print(iter.data + " --> ");
                 iter = iter.next;

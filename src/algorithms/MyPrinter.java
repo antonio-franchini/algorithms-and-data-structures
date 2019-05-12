@@ -121,4 +121,21 @@ public class MyPrinter {
         return true;
     }
 
+    public void printLinkedlist(LLNode root){
+        if(root == null){
+            System.out.print("List empty");
+        }
+        else {
+            LLNode iter = root;
+            while(iter != null && iter.next != null) {
+                System.out.print(iter.data + " --> ");
+                iter = iter.next;
+            }
+            if(iter != null) {
+                System.out.print(iter.data + "");
+            }
+        }
+        System.out.println("");
+    }
+
 }
