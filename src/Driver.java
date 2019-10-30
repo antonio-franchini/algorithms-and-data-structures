@@ -22,7 +22,22 @@ public class Driver {
 
 //        r.printSubsets(set);
 
-        r.permutations("abcd");
+//        r.permutations("abcd");
+//        r.printParentheses(3);
+
+        int screen[][] = {
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+        };
+
+        r.paintFill(screen, 4, 3, 1);
+        MyPrinter myPrinter = new MyPrinter();
+        myPrinter.printArray(screen);
     }
 
 }

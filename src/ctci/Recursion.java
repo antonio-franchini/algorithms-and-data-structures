@@ -1,3 +1,4 @@
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 
 public class Recursion {
@@ -211,22 +212,88 @@ public class Recursion {
     }
 
 
-/***************************************************************************************************************************
- 8.5
- Implement an algorithm to print all valid(e g, properly opened and closed) combinations of n-pairs of parentheses
- EXAMPLE:
- input:3(e g, 3 pairs of parentheses)
- output:()()(),()(()),(())(),((()))
- ***************************************************************************************************************************/
+    /***************************************************************************************************************************
+     8.5
+     Implement an algorithm to print all valid(e g, properly opened and closed) combinations of n-pairs of parentheses
+     EXAMPLE:
+     input:3(e g, 3 pairs of parentheses)
+     output:()()(),()(()),(())(),((()))
+     ***************************************************************************************************************************/
+
+    public class ParenNode {
+        ParenNode parent;
+        ArrayList<ParenNode> children;
+        String data;
+
+        ParenNode(ParenNode parent, String data) {
+            this.parent = parent;
+            this.children = new ArrayList<>();
+            this.data = data;
+        }
+    }
+
+    public void printParentheses(int n) {
+
+        // Check for zero case
+        if (n == 0) {
+            System.out.println("Nothing!");
+            return;
+        }
+        // Get tree of combinations
+        ParenNode root = new ParenNode(null, ")");
+        ArrayList<ParenNode> leaves = new ArrayList<>();
+        int remainingCount = n - 1;
+        int openCount = 1;
+        findCombinations(remainingCount, root, leaves, openCount);
+
+        //Print all combinations
+        leaves.forEach(leave -> {
+            while (leave != null) {
+                System.out.print(leave.data);
+                leave = leave.parent;
+            }
+            System.out.println("");
+        });
+    }
+
+    public void findCombinations(int remainingCount, ParenNode node, ArrayList<ParenNode> leaves, int openCount) {
+        if (remainingCount == 0 && openCount == 0) {
+            leaves.add(new ParenNode(node, ""));
+        }
+        if (remainingCount > 0) {
+            ParenNode current = new ParenNode(node, ")");
+            node.children.add(current);
+            findCombinations(remainingCount - 1, current, leaves, openCount + 1);
+        }
+        if (openCount > 0) {
+            ParenNode current = new ParenNode(node, "(");
+            node.children.add(current);
+            findCombinations(remainingCount, current, leaves, openCount - 1);
+        }
+    }
 
 
-/***************************************************************************************************************************
- 8.6
- Implement the “paint fill” function that one might see on many image editing programs That is, given a screen
- (represented by a 2 dimensional array of Colors), a point, and a new color,
- fill in the surrounding area until you hit a border of that color
- ***************************************************************************************************************************/
+    /***************************************************************************************************************************
+     8.6
+     Implement the “paint fill” function that one might see on many image editing programs That is, given a screen
+     (represented by a 2 dimensional array of Colors), a point, and a new color, fill in the surrounding area until you hit
+     a border of that color
+     ***************************************************************************************************************************/
+    public void paintFill(int[][] screen, int x, int y, int color) {
+        if (x < 0 || x >= screen.length || y < 0 || y >= screen[0].length) {
+            return;
+        }
 
+        if (screen[x][y] == color) {
+            return;
+        }
+
+        screen[x][y] = color;
+        paintFill(screen, x - 1, y, color);
+        paintFill(screen, x + 1, y, color);
+        paintFill(screen, x, y - 1, color);
+        paintFill(screen, x, y + 1, color);
+    }
 
 /***************************************************************************************************************************
  8.7
@@ -235,11 +302,14 @@ public class Recursion {
  ***************************************************************************************************************************/
 
 
+
+
 /***************************************************************************************************************************
  8.8
  Write an algorithm to print all ways of arranging eight queens on a chess board so that none of them share the same row,
  column or diagonal
  ***************************************************************************************************************************/
+
 
 
 }
