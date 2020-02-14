@@ -298,7 +298,7 @@
     </configuration>
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Driver" />
-      <module name="algos" />
+      <module name="algorithms-and-data-structures" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -311,7 +311,7 @@
       </method>
     </configuration>
     <configuration name="GraphTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="algos" />
+      <module name="algorithms-and-data-structures" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GraphTest" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -320,7 +320,7 @@
       </method>
     </configuration>
     <configuration name="TransformerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="algos" />
+      <module name="algorithms-and-data-structures" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TransformerTest" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
