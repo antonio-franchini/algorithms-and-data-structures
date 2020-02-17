@@ -1,72 +1,59 @@
 public class MergeSort {
-    public void sort(int[] arr, int start, int end){
+
+    public void sort(int arr[]) {
+        mergeSort(arr, 0, arr.length);
+    }
+
+    public void mergeSort(int arr[], int start, int end) {
         int middle = (start + end) / 2;
 
-        if(start < end){
-            sort(arr, start, middle);
-            sort(arr, middle+1, end);
-            merge(arr, start, end);
+        if (end - start > 1) {
+            mergeSort(arr, start, middle);
+            mergeSort(arr, middle, end);
+            merge(arr, start, end, middle);
         }
     }
 
-    public void sort(int[] arr){
-        sort(arr, 0, arr.length-1);
-    }
+    public void merge(int arr[], int start, int end, int middle) {
+        int left[] = new int[middle - start];
+        int right[] = new int[end - middle];
 
-    public void merge(int[] arr, int start, int end){
-        int middle = (start + end) / 2;
-
-        int sizeL = middle-start+1;
-        int sizeR = end - middle;
-
-        int[] L = new int[sizeL];
-        int[] R = new int[sizeR];
-
-        for(int i =0; i < sizeL; i++){
-            L[i] = arr[start+i];
-        }
-        for(int j =0; j < sizeR; j++){
-            R[j] = arr[middle+1+j];
+        for (int l = 0; l < left.length; l++) {
+            left[l] = arr[start + l];
         }
 
-        int k = start;
+        for (int r = 0; r < right.length; r++) {
+            right[r] = arr[middle + r];
+        }
 
-        int i = 0;
-        int j = 0;
+        int l = 0;
+        int r = 0;
+        int z = start;
 
-        while(i < sizeL && j < sizeR){
-            if(L[i] < R[j]){
-                arr[k] = L[i];
-                i++;
-                k++;
-            }
-            else {
-                arr[k] = R[j];
-                j++;
-                k++;
+        while (l < left.length && r < right.length) {
+            if (left[l] < right[r]) {
+                arr[z] = left[l];
+                l++;
+                z++;
+            } else {
+                arr[z] = right[r];
+                r++;
+                z++;
             }
         }
 
-        while(i < sizeL){
-            arr[k] = L[i];
-            i++;
-            k++;
+        while (l < left.length) {
+            arr[z] = left[l];
+            l++;
+            z++;
         }
 
-        while(j < sizeR){
-            arr[k] = R[j];
-            j++;
-            k++;
+        while (r < right.length) {
+            arr[z] = right[r];
+            r++;
+            z++;
         }
 
-    }
-
-    /* A utility function to print array of size n */
-    public void printArray(int arr[]) {
-        int n = arr.length;
-        for (int i=0; i<n; ++i)
-            System.out.print(arr[i] + " ");
-        System.out.println();
     }
 
 }

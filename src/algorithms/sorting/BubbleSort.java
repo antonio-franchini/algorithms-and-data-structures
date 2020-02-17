@@ -1,13 +1,11 @@
 public class BubbleSort {
 
-    public void sort(int arr[]){
-        for(int i = 0; i < arr.length-1; i++){
-            int j = i;
-            while(j < arr.length-1){
-                if(arr[j] > arr[j+1]){
-                    swap(arr, j, j+1);
+    public void sort(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    swap(arr, j, j + 1);
                 }
-                j++;
             }
         }
     }
@@ -16,13 +14,6 @@ public class BubbleSort {
         int temp = arr[index_a];
         arr[index_a] = arr[index_b];
         arr[index_b] = temp;
-    }
-
-    public void printArray(int arr[]){
-        for(int i = 0; i < arr.length; i++){
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println("");
     }
 
 }
